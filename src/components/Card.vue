@@ -6,30 +6,24 @@
             <img v-else :src="require('../assets/img/poster_placeholder.png')" alt="nessuna locandina">
             <div class="info position-absolute top-0 start-50 translate-middle-x text-center">
                 <div class="title">{{caption}}</div>
-            </div>
-        <!-- </div>
-            
-            <li>Titolo Originale:{{originalCaption}}</li>
-            <li>Lingua: 
-                <img v-if="isLanguage" 
+                <div class="lang mt-3">
+                    <img v-if="isLanguage" 
                      :src="require(`../assets/img/${originalLanguage}.png`)" 
                      :alt="originalLanguage"> 
-                <span v-else>{{originalLanguage}}</span>     
-            </li>
-            <li>Voto:{{voteAverage}}
-                
-                <span v-for="index in 5" :key="index">
-                    <i v-if="index <= voteAverage" class="fa-solid fa-star"></i>
-                    <i v-else class="far fa-star"></i>
-                </span>
-
-                  
-            </li>
-        
-            <li>
-                <img v-if="path" :src="`https://image.tmdb.org/t/p/w342${path}`" :alt="caption"> 
-                <img v-else :src="require('../assets/img/poster_placeholder.png')" alt="nessuna locandina">            </li>-->
-        </div> 
+                    <span v-else>{{originalLanguage}}</span>
+                </div>
+                <div class="mt-3 original-title">
+                    {{originalCaption}}
+                </div>
+                <div class="mt-3 vote">
+                    {{voteAverage}}     
+                    <span v-for="index in 5" :key="index">
+                      <i v-if="index <= voteAverage" class="fa-solid fa-star"></i>
+                      <i v-else class="far fa-star"></i>
+                   </span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -56,23 +50,26 @@ export default {
         right: 0;
         display: none;
     }
-    &:hover
+    &:hover .overlay, &:hover .info
     {
-        
+        display: block;
     }
     .info
     {
         color: white;
         padding: 10px;
-        .title
+        font-size: 1.4rem;
+        display: none;
+        .lang
         {
-            font-size: 1.4rem;
+            img{
+                width: 70px;
+                height: 35px;
+            }
         }
+
     }
-    img:hover.overlay
-    {
-        display: block;
-    }
+
 }
 
 
