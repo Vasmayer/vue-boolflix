@@ -1,25 +1,30 @@
 <template>
     <header>
-        <input type="text" placeholder="Cerca qualsiasi film" v-model="search" @keyup.enter="valueSearch">
-        <button type="button" @click="valueSearch">Cerca</button>
+       <Search @value-search = "valueSearch" />
     </header>
 </template>
 
 <script>
+import Search from './Search.vue'
+
 export default {
     name:'Header',
     methods:{
-        valueSearch()
+        valueSearch(search)
         {
-            this.$emit('value-search',this.search);
+            this.$emit('value-search',search);
         }
     },
     data()
     {
         return{
-            search:'',
+            
         }
-    }
+    },
+    components:
+    {
+        Search,
+    },
 }
 </script>
 

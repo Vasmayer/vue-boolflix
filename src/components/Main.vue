@@ -1,25 +1,34 @@
 <template>
     <main>
-        <ul>
-            <li v-for="{title,original_title,original_language,vote_average,id} in listFilms" :key="id">
-                Titolo: {{title}}<br>
-                Titolo Originale:{{original_title}}<br>
-                Lingua: 
-                <img v-if="isLanguage(original_language)" :src="require(`../assets/img/${original_language}.png`)" :alt="original_language"> <br>
-                Voto:{{vote_average}}<br>
-            </li>
-             <li v-for="{name,original_name,original_language,vote_average,id} in listSeries" :key="id">
-                Titolo: {{name}}<br>
-                Titolo Originale:{{original_name}}<br>
-                Lingua: 
-                <img v-if="isLanguage(original_language)" :src="require(`../assets/img/${original_language}.png`)" :alt="original_language"> <br>
-                Voto:{{vote_average}}<br>
-            </li>
-        </ul>
+        <h3>FILMS</h3>
+        <Card 
+        v-for="{title,original_title,original_language,vote_average,poster_path,id} in listFilms" 
+        :key="id" 
+        :caption = "title"
+        :original-caption="original_title"
+        :original-language="original_language"
+        :vote-average="vote_average"
+        :is-language = "isLanguage(original_language)"
+        :path = "poster_path"
+        />
+        <h3>SERIES</h3>
+        <Card 
+        v-for="{name,original_name,original_language,vote_average,poster_path,id} in listSeries" 
+        :key="id" 
+        :caption = "name"
+        :original-caption="original_name"
+        :original-language="original_language"
+        :vote-average="vote_average"
+        :is-language = "isLanguage(original_language)"
+        :path = "poster_path"
+        />
+        
     </main>
 </template>
 
 <script>
+import Card from './Card.vue'
+
 export default {
     name:'Main',
     props:['listFilms','listSeries'],
@@ -35,6 +44,10 @@ export default {
         {
             return this.languages.includes(lang); 
         }
+    },
+    components:
+    {
+        Card,
     }
 }
 </script>
