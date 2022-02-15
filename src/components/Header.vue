@@ -1,6 +1,15 @@
 <template>
     <header>
-       <Search @value-search = "valueSearch" />
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                 <a class="navbar-brand text-danger" href="#">BOOLFIX</a>
+                <div class="d-flex">
+                     <Search @value-search = "valueSearch" />
+                </div>
+            </div>
+        </nav>
+
+      
     </header>
 </template>
 

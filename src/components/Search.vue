@@ -1,8 +1,9 @@
 <template>
-    <div>
-        <input type="text" placeholder="Cerca qualsiasi film" v-model="search" @keyup.enter="valueSearch">
-        <button type="button" @click="valueSearch">Cerca</button>
-    </div>
+ <div class="d-flex justify-content-end">
+        <input class="form-control me-2" placeholder="Cerca..." v-model="search" @keyup.enter="valueSearch">
+        <button class="btn btn-outline-success" type="button" @click="valueSearch">Cerca</button>
+ </div>
+
 </template>
 
 <script>
