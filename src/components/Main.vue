@@ -4,7 +4,7 @@
 
                 <h3 v-if="listFilms.length">FILMS</h3>
                 <Card 
-                v-for="{title,original_title,original_language,vote_average,poster_path,id} in listFilms" 
+                v-for="{title,original_title,original_language,vote_average,poster_path,id,genre_ids} in listFilms" 
                 :key="id" 
                 :caption = "title"
                 :original-caption="original_title"
@@ -12,10 +12,13 @@
                 :vote-average="fifthStars(vote_average)"
                 :is-language = "isLanguage(original_language)"
                 :path = "poster_path"
+                :id="id"
+                type-show='movie'
+                :genre_ids="genre_ids"
                 />
                 <h3 v-if="listSeries.length">SERIES</h3>
                 <Card 
-                v-for="{name,original_name,original_language,vote_average,poster_path,id} in listSeries" 
+                v-for="{name,original_name,original_language,vote_average,poster_path,id,genre_ids} in listSeries" 
                 :key="id" 
                 :caption = "name"
                 :original-caption="original_name"
@@ -23,6 +26,9 @@
                 :vote-average="fifthStars(vote_average)"
                 :is-language = "isLanguage(original_language)"
                 :path = "poster_path"
+                :id="id"
+                type-show="tv"
+                :genre_ids="genre_ids"
                 />
         </div>
         

@@ -1,11 +1,11 @@
 <template>
-    <div class="col-4">
+    <div class="col-12 col-md-6 col-xl-4">
         <div class="card position-relative">
             <div class="overlay"></div>
             <img v-if="path" :src="`https://image.tmdb.org/t/p/w342${path}`" :alt="caption"> 
             <img v-else :src="require('../assets/img/poster_placeholder.png')" alt="nessuna locandina">
-            <div class="info position-absolute top-0 start-50 translate-middle-x text-center">
-                <div class="title">{{caption}}</div>
+            <div class="info position-absolute top-0">
+                <div class="title text-center">{{caption}}</div>
                 <div class="lang mt-3">
                     <img v-if="isLanguage" 
                      :src="require(`../assets/img/${originalLanguage}.png`)" 
@@ -22,21 +22,42 @@
                       <i v-else class="far fa-star"></i>
                    </span>
                 </div>
+                <div class="cast mt-3">
+                    <p>CAST</p>
+                    <Cast :type-show="typeShow" :id="id"/>
+                </div>
+                <div class="genre mt-3">
+                    <p>GENERE</p>
+                    <ul>
+                         <Genre v-for="genre in genre_ids" :key="genre" :type-show="typeShow" :genre="genre" />
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Cast from './Cast.vue'
+import Genre from './Genre.vue'
+
 export default {
     name:'Card',
-    props:['caption','originalCaption','originalLanguage','voteAverage','isLanguage','path'],
+    props:['caption','originalCaption','originalLanguage','voteAverage','isLanguage','path','id','typeShow','genre_ids'],
+    methods:
+    {
+       
+    },
+    components:
+    {
+        Cast,
+        Genre,
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 
-@import '../assets/scss/index.scss';
 .card
 {  
     cursor: pointer;
@@ -57,8 +78,8 @@ export default {
     .info
     {
         color: white;
-        padding: 10px;
-        font-size: 1.4rem;
+        padding: 15px;
+        font-size: 0.8rem;
         display: none;
         .lang
         {
@@ -66,6 +87,10 @@ export default {
                 width: 70px;
                 height: 35px;
             }
+        }
+        .title
+        {
+            font-size: 1.3rem;
         }
 
     }
