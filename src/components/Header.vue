@@ -1,10 +1,11 @@
 <template>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                 <a class="navbar-brand text-danger" href="#">BOOLFIX</a>
-                <div class="d-flex">
-                     <Search @value-search = "valueSearch" />
+            <div class="container">
+                <a class="navbar-brand text-danger" href="#">BOOLFIX</a>
+                <div class="d-flex justify-content-around flex-grow-1">
+                     <Select />
+                     <Search @value-search = "valueSearch" />          
                 </div>
             </div>
         </nav>
@@ -15,6 +16,7 @@
 
 <script>
 import Search from './Search.vue'
+import Select from './Select.vue'
 
 export default {
     name:'Header',
@@ -33,6 +35,7 @@ export default {
     components:
     {
         Search,
+        Select
     },
 }
 </script>

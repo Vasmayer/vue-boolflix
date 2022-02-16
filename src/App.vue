@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header @value-search = "setSearch" />
+    <Header @value-search = "setSearch"/>
     <Main :list-films="listFilms" :list-series="listSeries"/>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
           query: '',
           language:'it-IT'
         }
-      }
+      },
     }
   },
   computed:
@@ -38,6 +38,7 @@ export default {
   },
   methods:
   {
+    
     filmsCall(query)
     {
       this.options.params.query = query;
@@ -59,7 +60,8 @@ export default {
       this.search  = search;
       this.filmsCall(this.search);
       this.seriesCall(this.search);
-    }
+    },
+    
 
   },
   mounted()

@@ -1,20 +1,20 @@
 <template>
     <div>
-        <li>{{listGenres[listGenres.findIndex(object => {return object.id === genre})].name}}</li>
+        <li>{{listGenre}}</li>
     </div>
 </template>
 
 <script>
-
 import axios from 'axios';
 
 export default {
     name:'Genre',
     props:['genre','typeShow'],
-     data()
+    data()
     {
         return{
-            listGenres:[],
+           
+            listGenre:[],
             options:
             {
                 params:
@@ -23,22 +23,29 @@ export default {
                     language:'it-IT'
                 }
             }
-      
         }
+    },
+    computed:
+    {
+       
     },
     methods:
     {
-        callGenres()
+        genresFilmCall()
         {
-                axios.get(`https://api.themoviedb.org/3/genre/${this.typeShow}/list`,this.options).then(res => {
-                this.listGenres = res.data.genres;
-                });
-        }
+            axios.get(`https://api.themoviedb.org/3/genre/${this.typeShow}/list`,this.options).then(res => {
+               
+               const data = res.data.genres;
+               this.listGenre = data[data.findIndex(object => {return object.id === this.genre})].name;
+            
+            });
+        },
     },
     mounted()
     {
-        this.callGenres()
+        this.genresFilmCall();
     }
+    
 }
 </script>
 

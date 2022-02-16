@@ -48,10 +48,20 @@ export default {
     {
        
     },
+    data()
+    {
+        return{
+           
+        }
+    },
     components:
     {
         Cast,
         Genre,
+    },
+    mounted()
+    {
+       
     }
 }
 </script>

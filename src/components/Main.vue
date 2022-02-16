@@ -3,7 +3,7 @@
         <div class="row g-5">
 
                 <h3 v-if="listFilms.length">FILMS</h3>
-                <Card 
+                <Card  
                 v-for="{title,original_title,original_language,vote_average,poster_path,id,genre_ids} in listFilms" 
                 :key="id" 
                 :caption = "title"
@@ -13,11 +13,11 @@
                 :is-language = "isLanguage(original_language)"
                 :path = "poster_path"
                 :id="id"
-                type-show='movie'
+                 type-show='movie'
                 :genre_ids="genre_ids"
                 />
                 <h3 v-if="listSeries.length">SERIES</h3>
-                <Card 
+                <Card  
                 v-for="{name,original_name,original_language,vote_average,poster_path,id,genre_ids} in listSeries" 
                 :key="id" 
                 :caption = "name"
@@ -56,7 +56,8 @@ export default {
         fifthStars(vote)
         {
             return Math.ceil(vote/2)
-        }
+        },
+       
     },
     components:
     {
