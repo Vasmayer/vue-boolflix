@@ -4,7 +4,7 @@
             <div class="container">
                 <a class="navbar-brand text-danger" href="#">BOOLFIX</a>
                 <div class="d-flex justify-content-around flex-grow-1">
-                     <Select />
+                     <Select @on-selected = "valueSelect" />
                      <Search @value-search = "valueSearch" />          
                 </div>
             </div>
@@ -24,6 +24,10 @@ export default {
         valueSearch(search)
         {
             this.$emit('value-search',search);
+        },
+        valueSelect(select)
+        {
+            this.$emit('value-select',select);
         }
     },
     data()

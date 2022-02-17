@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header @value-search = "setSearch"/>
-    <Main :list-films="listFilms" :list-series="listSeries"/>
+    <Header @value-search = "setSearch" @value-select = "selectedValue"/>
+    <Main :list-films="listFilteredFilms" :list-series="listFilteredSeries"/>
   </div>
 </template>
 
@@ -22,6 +22,8 @@ export default {
       uriCallSeries:'https://api.themoviedb.org/3/search/tv',
       listFilms:[],
       listSeries:[],
+      listFilteredFilms:[],
+      listFilteredSeries:[],
       options:{
         params:
         {
@@ -38,13 +40,22 @@ export default {
   },
   methods:
   {
-    
+    selectedValue(value)
+    {
+      if(value)
+      {
+        this.listFilteredFilms = this.listFilms.filter(show => show.genre_ids.includes(value));
+        this.listFilteredSeries = this.listSeries.filter(show => show.genre_ids.includes(value)); 
+      }
+    },
     filmsCall(query)
     {
       this.options.params.query = query;
       axios.get(this.uriCallMovie,this.options).then(res => {
 
         this.listFilms = res.data.results;
+        this.listFilteredFilms = res.data.results;
+        
       });
     },
     seriesCall(query)
@@ -53,6 +64,7 @@ export default {
       axios.get(this.uriCallSeries,this.options).then(res => {
 
         this.listSeries = res.data.results;
+        this.listFilteredSeries = res.data.results;
       });
     },
     setSearch(search)
